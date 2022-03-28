@@ -1,0 +1,72 @@
+@use "../config";
+
+.movie-card {
+  width: 100%;
+  overflow: visible;
+  position: relative;
+  display: block;
+
+  img {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 2/3;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: all 0.1s;
+  }
+
+  .inner-card-controls {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    width: max-content;
+    transform: translateX(-50%) translateY(80%);
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 3px;
+    opacity: 0;
+    transition: all 0.3s ease;
+
+    @media only screen and (max-device-width: 500px) {
+      opacity: 1;
+      transform: translateX(-50%) translateY(100%);
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.moviecardinner {
+  width: 100%;
+  aspect-ratio: 2/3;
+  box-shadow: config.$shadowElevationHigh;
+  border-radius: 5px;
+  border: 1px solid #fff1;
+  max-height: max-content;
+  position: relative;
+
+  &:hover > .tooltip {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    opacity: 1;
+  }
+
+  &:hover .overlay {
+    border: 2px solid config.$secondaryColor;
+  }
+
+  &:hover .inner-card-controls {
+    opacity: 1;
+    transform: translateX(-50%) translateY(60%);
+  }
+}
