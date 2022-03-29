@@ -16,6 +16,7 @@ const Watchlist = () => {
       isFiltered
         ? watchlist.filter(
             (movie) =>
+              movie?.watchProviders &&
               movie?.watchProviders[region]?.flatrate &&
               movie?.watchProviders[region]?.flatrate.find((sp) => {
                 return sp?.provider_id === 8;
