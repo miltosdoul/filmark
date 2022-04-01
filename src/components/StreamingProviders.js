@@ -12,22 +12,26 @@ const StreamingProviders = ({ movie, movieData, type }) => {
     fetchStreamingData(timeSinceUpdate);
   }, []);
 
-  const fetchStreamingData = (currTime) => {
+  const fetchStreamingData = async (currTime) => {
     if (currTime > DAY_IN_MSEC) {
       fetch(
         `https://api.themoviedb.org/3/movie/${movie.id}/watch/providers?api_key=${process.env.REACT_APP_TMDB_KEY}`
       )
         .then((res) => res.json())
         .then((data) => {
-          if (!data.errors && data.results) {
-            movie.watchProviders = data.results;
-            movie.lastStreamingDataUpdate = Date.now();
+          //delete unused info
+          for (const key in data.results) {
+            data.results[key].buy && delete data.results[key].buy;
+            data.results[key].rent && delete data.results[key].rent;
+            data.results[key].link && delete data.results[key].link;
+          }
+          movie.watchProviders = data.results;
+          movie.lastStreamingDataUpdate = Date.now();
 
-            if (type == "watchlist") {
-              updateMovieInWatchlist(movie);
-            } else if (type == "watched") {
-              updateMovieInWatched(movie);
-            }
+          if (type == "watchlist") {
+            updateMovieInWatchlist(movie);
+          } else if (type == "watched") {
+            updateMovieInWatched(movie);
           }
         });
     }

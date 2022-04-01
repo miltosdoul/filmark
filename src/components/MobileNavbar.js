@@ -40,21 +40,27 @@ const MobileNavbar = () => {
       ></div>
       <nav className={open ? "mobile-nav open" : "mobile-nav"}>
         <div className="nav-content">
-          <div className="mobile-nav__link" onClick={closeNavbar}>
-            <Link to="/">home</Link>
-          </div>
-          <div className="mobile-nav__link" onClick={closeNavbar}>
-            <Link to="/watchlist">watchlist</Link>
-          </div>
-          <div className="mobile-nav__link" onClick={closeNavbar}>
-            <Link to="/watched">watched</Link>
-          </div>
-          <div className="mobile-nav__link" onClick={closeNavbar}>
-            <Link to="/add" className="btn">
-              + add
+          <div className="mobile-nav__link">
+            <Link to="/" onClick={closeNavbar}>
+              home
             </Link>
           </div>
           <div className="mobile-nav__link">
+            <Link to="/watchlist" onClick={closeNavbar}>
+              watchlist
+            </Link>
+          </div>
+          <div className="mobile-nav__link">
+            <Link to="/watched" onClick={closeNavbar}>
+              watched
+            </Link>
+          </div>
+          <div className="mobile-nav__link">
+            <Link to="/add" className="btn" onClick={closeNavbar}>
+              + add
+            </Link>
+          </div>
+          <div className="mobile-nav__link" onClick={closeNavbar}>
             <RegionSelector
               region={region}
               regionList={regions}

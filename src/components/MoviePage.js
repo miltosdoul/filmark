@@ -233,11 +233,12 @@ const MoviePage = () => {
               </>
             )}
           </div>
-          <section className="cast">
-            <h2>Cast:</h2>
-            <div className="scroller cast-crew">
-              {movieCast.cast &&
-                movieCast.cast.slice(0, 30).map((member, idx) => (
+          {movieCast?.results?.length > 0 && !isLoading && (
+            <section className="cast">
+              <h2>Cast:</h2>
+              <div className="scroller cast-crew">
+                {/* {movieCast.cast && */}
+                {movieCast.cast.slice(0, 30).map((member, idx) => (
                   <div className="person-profile" key={idx}>
                     <img
                       src={
@@ -255,8 +256,9 @@ const MoviePage = () => {
                     </div>
                   </div>
                 ))}
-            </div>
-          </section>
+              </div>
+            </section>
+          )}
           {movieRecommendations?.results?.length > 0 && !isLoading && (
             <section className="recommendations">
               <h2>More like this:</h2>
