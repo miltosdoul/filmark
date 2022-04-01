@@ -36,6 +36,7 @@ const MoviePage = () => {
         }
       })
       .then((data) => {
+        console.log(data);
         setCast(data);
       })
       .catch((err) => {
@@ -233,11 +234,10 @@ const MoviePage = () => {
               </>
             )}
           </div>
-          {movieCast?.results?.length > 0 && !isLoading && (
+          {movieCast?.cast?.length > 0 && !isLoading && (
             <section className="cast">
               <h2>Cast:</h2>
               <div className="scroller cast-crew">
-                {/* {movieCast.cast && */}
                 {movieCast.cast.slice(0, 30).map((member, idx) => (
                   <div className="person-profile" key={idx}>
                     <img
