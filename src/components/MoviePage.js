@@ -36,7 +36,6 @@ const MoviePage = () => {
         }
       })
       .then((data) => {
-        console.log(data);
         setCast(data);
       })
       .catch((err) => {
